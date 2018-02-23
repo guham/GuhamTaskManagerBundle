@@ -1,0 +1,31 @@
+language: php
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+env:
+  global:
+    - PHPUNIT_FLAGS="-v"
+
+matrix:
+  fast_finish: true
+  include:
+    - php: '7.1'
+    - php: '7.2'
+      env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text"
+    - php: '7.2'
+      env: lint=1
+
+before_install:
+  - if [[ $COVERAGE != true ]]; then phpenv config-rm xdebug.ini || true; fi
+
+install:
+  - composer update --prefer-dist --no-progress --no-suggest --ansi
+
+script:
+  - composer validate --strict --no-check-lock
+  - vendor/bin/phpunit $PHPUNIT_FLAGS
+  - if [[ $lint = 1 ]]; then vendor/bin/php-cs-fixer fix --dry-run --diff --no-ansi; fi
