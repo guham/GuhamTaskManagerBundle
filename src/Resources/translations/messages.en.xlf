@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="menu_homepage">
+        <source>menu.homepage</source>
+        <target>Homepage</target>
+      </trans-unit>
+      <trans-unit id="menu_tasks">
+        <source>menu.tasks</source>
+        <target>Tasks</target>
+      </trans-unit>
+      <trans-unit id="menu_tags">
+        <source>menu.tags</source>
+        <target>Tags</target>
+      </trans-unit>
+      <trans-unit id="label_id">
+        <source>label.id</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="label_name">
+        <source>label.name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="label_tasks">
+        <source>label.tasks</source>
+        <target>Tasks</target>
+      </trans-unit>
+      <trans-unit id="label_tags">
+        <source>label.tags</source>
+        <target>Tags</target>
+      </trans-unit>
+      <trans-unit id="label_title">
+        <source>label.title</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit id="label_startdate">
+        <source>label.startdate</source>
+        <target>Start date</target>
+      </trans-unit>
+      <trans-unit id="label_enddate">
+        <source>label.enddate</source>
+        <target>End date</target>
+      </trans-unit>
+      <trans-unit id="label_iscompleted">
+        <source>label.iscompleted</source>
+        <target>Is completed</target>
+      </trans-unit>
+      <trans-unit id="label_ispinned">
+        <source>label.ispinned</source>
+        <target>Is pinned</target>
+      </trans-unit>
+      <trans-unit id="label_note">
+        <source>label.note</source>
+        <target>Notes</target>
+      </trans-unit>
+      <trans-unit id="label_createdat">
+        <source>label.createdat</source>
+        <target>Create date</target>
+      </trans-unit>
+      <trans-unit id="label_updatedat">
+        <source>label.updatedat</source>
+        <target>Update date</target>
+      </trans-unit>
+      <trans-unit id="add_tag">
+        <source>add.tag</source>
+        <target>Add Tag</target>
+      </trans-unit>
+      <trans-unit id="edit.tag (#%entity_id%)">
+        <source>edit.tag (#%entity_id%)</source>
+        <target>Edit Tag (#%entity_id%)</target>
+      </trans-unit>
+      <trans-unit id="add_task">
+        <source>add.task</source>
+        <target>Add Task</target>
+      </trans-unit>
+      <trans-unit id="edit.task (#%entity_id%)">
+        <source>edit.task (#%entity_id%)</source>
+        <target>Edit Task (#%entity_id%)</target>
+      </trans-unit>
+      <trans-unit id="show.task (#%entity_id%)">
+        <source>show.task (#%entity_id%)</source>
+        <target>Task (#%entity_id%)</target>
+      </trans-unit>
+      <trans-unit id="label_pin_task">
+        <source>label.pin.task</source>
+        <target>Pin this task</target>
+      </trans-unit>
+      <trans-unit id="label_complete_task">
+        <source>label.complete.task</source>
+        <target>Mark this task as completed</target>
+      </trans-unit>
+      <trans-unit id="Tag">
+        <source>Tag</source>
+        <target>Tag</target>
+      </trans-unit>
+      <trans-unit id="Task">
+        <source>Task</source>
+        <target>Task</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

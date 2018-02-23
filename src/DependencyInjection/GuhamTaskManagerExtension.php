@@ -1,0 +1,141 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Guham\TaskManagerBundle\DependencyInjection;
+
+use Guham\TaskManagerBundle\Entity\Tag;
+use Guham\TaskManagerBundle\Entity\Task;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+
+final class GuhamTaskManagerExtension extends Extension implements PrependExtensionInterface
+{
+    const DEFAULT_MINUTES = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prepend(ContainerBuilder $container)
+    {
+        $container->prependExtensionConfig('stof_doctrine_extensions', [
+            'orm' => ['default' => ['timestampable' => true]],
+        ]);
+
+        $container->prependExtensionConfig('easy_admin', [
+            'site_name' => 'Task Manager - Admin',
+            'design' => [
+                'brand_color' => '#4F805D',
+                'menu' => [
+                    ['label' => 'menu.homepage', 'route' => 'home', 'icon' => 'home'],
+                    ['entity' => 'Task', 'icon' => 'list', 'default' => true],
+                    ['entity' => 'Tag', 'icon' => 'list'],
+                ],
+            ],
+            'list' => [
+                'max_results' => 30,
+                'actions' => [
+                    ['name' => 'edit', 'icon' => 'pencil'],
+                    ['name' => 'delete', 'icon' => 'trash'],
+                    ['name' => 'new', 'icon' => 'plus'],
+                ],
+            ],
+            'entities' => [
+                'Task' => [
+                    'class' => Task::class,
+                    'label' => 'menu.tasks',
+                    'list' => [
+                        'title' => 'label.tasks',
+                        'actions' => [
+                            ['name' => 'new', 'label' => 'add.task', 'icon' => 'plus'],
+                        ],
+                        'fields' => [
+                            ['property' => 'id', 'label' => 'label.id'],
+                            ['property' => 'title', 'label' => 'label.title'],
+                            ['property' => 'startDate', 'label' => 'label.startdate'],
+                            ['property' => 'endDate', 'label' => 'label.enddate'],
+                            ['property' => 'isCompleted', 'label' => 'label.iscompleted'],
+                            ['property' => 'isPinned', 'label' => 'label.ispinned'],
+                            ['property' => 'tags', 'label' => 'label.tags'],
+                        ],
+                    ],
+                    'show' => [
+                        'fields' => [
+                            ['property' => 'title', 'label' => 'label.title'],
+                            ['property' => 'startDate', 'label' => 'label.startdate'],
+                            ['property' => 'endDate', 'label' => 'label.enddate'],
+                            ['property' => 'isCompleted', 'label' => 'label.iscompleted'],
+                            ['property' => 'isPinned', 'label' => 'label.ispinned'],
+                            ['property' => 'note', 'label' => 'label.note'],
+                            ['property' => 'createdAt', 'label' => 'label.createdat'],
+                            ['property' => 'updatedAt', 'label' => 'label.updatedat'],
+                            ['property' => 'tags', 'label' => 'label.tags'],
+                        ],
+                    ],
+                    'form' => [
+                        'title' => 'add.task',
+                        'fields' => [
+                            ['property' => 'title', 'label' => 'label.title'],
+                            ['property' => 'startDate', 'label' => 'label.startdate', 'type_options' => ['minutes' => self::DEFAULT_MINUTES]],
+                            ['property' => 'endDate', 'label' => 'label.enddate', 'type_options' => ['minutes' => self::DEFAULT_MINUTES]],
+                            ['property' => 'note', 'label' => 'label.note'],
+                            ['property' => 'isPinned', 'label' => 'label.pin.task', 'help' => 'Is this task very important?'],
+                            ['property' => 'isCompleted', 'label' => 'label.complete.task'],
+                            ['property' => 'tags', 'label' => 'label.tags'],
+                        ],
+                    ],
+                    'edit' => [
+                        'title' => 'edit.task (#%%entity_id%%)',
+                    ],
+                    'new' => [
+                        'fields' => [
+                            '-createdAt',
+                            '-updatedAt',
+                        ],
+                    ],
+                ],
+                'Tag' => [
+                    'class' => Tag::class,
+                    'label' => 'menu.tags',
+                    'list' => [
+                        'title' => 'label.tags',
+                        'actions' => [
+                            ['name' => 'new', 'label' => 'add.tag', 'icon' => 'plus'],
+                        ],
+                        'fields' => [
+                            ['property' => 'id', 'label' => 'label.id'],
+                            ['property' => 'name', 'label' => 'label.name'],
+                            ['property' => 'tasks', 'label' => 'label.tasks'],
+                        ],
+                    ],
+                    'show' => [
+                        'fields' => [
+                            ['property' => 'name', 'label' => 'label.name'],
+                            ['property' => 'tasks', 'label' => 'label.tasks'],
+                        ],
+                    ],
+                    'form' => [
+                        'title' => 'add.tag',
+                        'fields' => [
+                            ['property' => 'name', 'label' => 'label.name'],
+                        ],
+                    ],
+                    'edit' => [
+                        'title' => 'edit.tag (#%%entity_id%%)',
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function load(array $configs, ContainerBuilder $container)
+    {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+        $container->setParameter('guham_task_manager.title', $config['title']);
+    }
+}
