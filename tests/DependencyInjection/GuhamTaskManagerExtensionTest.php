@@ -49,9 +49,9 @@ class GuhamTaskManagerExtensionTest extends TestCase
             'design' => [
                 'brand_color' => '#4F805D',
                 'menu' => [
-                    ['label' => 'menu.homepage', 'route' => 'home', 'icon' => 'home'],
-                    ['entity' => 'Task', 'icon' => 'list', 'default' => true],
-                    ['entity' => 'Tag', 'icon' => 'list'],
+                    ['label' => 'menu.homepage', 'route' => '%guham_task_manager.homepage_route%', 'icon' => 'home'],
+                    ['entity' => 'Task', 'icon' => 'tasks', 'default' => true],
+                    ['entity' => 'Tag', 'icon' => 'tags'],
                 ],
             ],
             'list' => [
@@ -159,6 +159,7 @@ class GuhamTaskManagerExtensionTest extends TestCase
 
         $parameters = [
             'guham_task_manager.title' => 'title',
+            'guham_task_manager.homepage_route' => '/',
         ];
         foreach ($parameters as $key => $value) {
             $containerBuilderProphecy->setParameter($key, $value)->shouldBeCalled();

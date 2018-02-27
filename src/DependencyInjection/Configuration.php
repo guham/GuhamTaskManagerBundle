@@ -24,6 +24,11 @@ final class Configuration implements ConfigurationInterface
                     ->cannotBeEmpty()
                     ->defaultValue('')
                 ->end()
+                ->scalarNode('homepage_route')
+                    ->info('The homepage route.')
+                    ->cannotBeEmpty()
+                    ->defaultValue('/')
+                ->end()
             ->end();
 
         return $treeBuilder;

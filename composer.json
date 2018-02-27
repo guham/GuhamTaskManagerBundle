@@ -25,10 +25,10 @@
         "symfony/yaml": "^4.0"
     },
     "autoload": {
-        "psr-4": { "Guham\\TaskManagerBundle\\": "src" }
+        "psr-4": { "Guham\\TaskManagerBundle\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": { "Guham\\TaskManagerBundle\\Tests\\": "tests" }
+        "psr-4": { "Guham\\TaskManagerBundle\\Tests\\": "tests/" }
     },
     "config": {
         "sort-packages": true
