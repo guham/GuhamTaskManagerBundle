@@ -31,14 +31,13 @@ class ConfigurationTest extends TestCase
     public function testDefaultConfig()
     {
         $treeBuilder = $this->configuration->getConfigTreeBuilder();
-        $config = $this->processor->processConfiguration($this->configuration, [
-            'guham_task_manager' => [
-                'title' => 'title',
-            ],
-        ]);
+        $config = $this->processor->processConfiguration($this->configuration, []);
 
         $this->assertInstanceOf(TreeBuilder::class, $treeBuilder);
         $this->assertInstanceOf(ConfigurationInterface::class, $this->configuration);
-        $this->assertEquals(['title' => 'title'], $config);
+        $this->assertEquals([
+            'title' => '',
+            'homepage_route' => '/',
+        ], $config);
     }
 }

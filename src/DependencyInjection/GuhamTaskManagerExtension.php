@@ -28,9 +28,9 @@ final class GuhamTaskManagerExtension extends Extension implements PrependExtens
             'design' => [
                 'brand_color' => '#4F805D',
                 'menu' => [
-                    ['label' => 'menu.homepage', 'route' => 'home', 'icon' => 'home'],
-                    ['entity' => 'Task', 'icon' => 'list', 'default' => true],
-                    ['entity' => 'Tag', 'icon' => 'list'],
+                    ['label' => 'menu.homepage', 'route' => '%guham_task_manager.homepage_route%', 'icon' => 'home'],
+                    ['entity' => 'Task', 'icon' => 'tasks', 'default' => true],
+                    ['entity' => 'Tag', 'icon' => 'tags'],
                 ],
             ],
             'list' => [
@@ -137,5 +137,6 @@ final class GuhamTaskManagerExtension extends Extension implements PrependExtens
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('guham_task_manager.title', $config['title']);
+        $container->setParameter('guham_task_manager.homepage_route', $config['homepage_route']);
     }
 }
