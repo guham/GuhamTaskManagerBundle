@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 class GuhamTaskManagerExtensionTest extends TestCase
 {
     const DEFAULT_CONFIG = ['guham_task_manager' => [
-        'title' => 'title',
+        'title' => 'Title',
     ]];
     const DEFAULT_MINUTES = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 
@@ -44,12 +44,14 @@ class GuhamTaskManagerExtensionTest extends TestCase
 
         $containerBuilderProphecy->prependExtensionConfig('stof_doctrine_extensions', Argument::type('array'))->shouldBeCalled();
 
+        $containerBuilderProphecy->getExtensionConfig('guham_task_manager')->willReturn([])->shouldBeCalled();
+
         $containerBuilderProphecy->prependExtensionConfig('easy_admin', [
             'site_name' => 'Task Manager - Admin',
             'design' => [
                 'brand_color' => '#4F805D',
                 'menu' => [
-                    ['label' => 'menu.homepage', 'route' => '%guham_task_manager.homepage_route%', 'icon' => 'home'],
+                    ['label' => 'menu.homepage', 'route' => '/', 'icon' => 'home'],
                     ['entity' => 'Task', 'icon' => 'tasks', 'default' => true],
                     ['entity' => 'Tag', 'icon' => 'tags'],
                 ],
@@ -158,7 +160,7 @@ class GuhamTaskManagerExtensionTest extends TestCase
         $containerBuilderProphecy = $this->prophesize(ContainerBuilder::class);
 
         $parameters = [
-            'guham_task_manager.title' => 'title',
+            'guham_task_manager.title' => 'Title',
             'guham_task_manager.homepage_route' => '/',
         ];
         foreach ($parameters as $key => $value) {

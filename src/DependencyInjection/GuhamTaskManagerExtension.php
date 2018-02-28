@@ -23,12 +23,15 @@ final class GuhamTaskManagerExtension extends Extension implements PrependExtens
             'orm' => ['default' => ['timestampable' => true]],
         ]);
 
+        $configs = $container->getExtensionConfig($this->getAlias());
+        $config = $this->processConfiguration(new Configuration(), $configs);
+
         $container->prependExtensionConfig('easy_admin', [
             'site_name' => 'Task Manager - Admin',
             'design' => [
                 'brand_color' => '#4F805D',
                 'menu' => [
-                    ['label' => 'menu.homepage', 'route' => '%guham_task_manager.homepage_route%', 'icon' => 'home'],
+                    ['label' => 'menu.homepage', 'route' => $config['homepage_route'], 'icon' => 'home'],
                     ['entity' => 'Task', 'icon' => 'tasks', 'default' => true],
                     ['entity' => 'Tag', 'icon' => 'tags'],
                 ],
