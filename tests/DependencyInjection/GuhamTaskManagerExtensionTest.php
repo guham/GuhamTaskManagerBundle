@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Guham\TaskManagerBundle\Tests\DependencyInjection;
 
 use Guham\TaskManagerBundle\DependencyInjection\GuhamTaskManagerExtension;
+use Guham\TaskManagerBundle\Form\Type\TaskDateTimeType;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -16,7 +17,6 @@ class GuhamTaskManagerExtensionTest extends TestCase
     const DEFAULT_CONFIG = ['guham_task_manager' => [
         'title' => 'Title',
     ]];
-    const DEFAULT_MINUTES = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 
     private $extension;
 
@@ -99,9 +99,9 @@ class GuhamTaskManagerExtensionTest extends TestCase
                     'form' => [
                         'title' => 'add.task',
                         'fields' => [
-                            ['property' => 'title', 'label' => 'label.title'],
-                            ['property' => 'startDate', 'label' => 'label.startdate', 'type_options' => ['minutes' => self::DEFAULT_MINUTES]],
-                            ['property' => 'endDate', 'label' => 'label.enddate', 'type_options' => ['minutes' => self::DEFAULT_MINUTES]],
+                            ['property' => 'title', 'label' => 'label.title', 'type_options' => ['empty_data' => '']],
+                            ['property' => 'startDate', 'label' => 'label.startdate', 'type' => TaskDateTimeType::class],
+                            ['property' => 'endDate', 'label' => 'label.enddate', 'type' => TaskDateTimeType::class],
                             ['property' => 'note', 'label' => 'label.note'],
                             ['property' => 'isPinned', 'label' => 'label.pin.task', 'help' => 'Is this task very important?'],
                             ['property' => 'isCompleted', 'label' => 'label.complete.task'],
