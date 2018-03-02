@@ -55,6 +55,11 @@ class GuhamTaskManagerExtensionTest extends TestCase
                     ['entity' => 'Task', 'icon' => 'tasks', 'default' => true],
                     ['entity' => 'Tag', 'icon' => 'tags'],
                 ],
+                'assets' => [
+                    'css' => [
+                        'bundles/guhamtaskmanager/css/admin.css',
+                    ],
+                ],
             ],
             'list' => [
                 'max_results' => 30,
