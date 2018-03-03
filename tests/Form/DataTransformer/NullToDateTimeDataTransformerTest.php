@@ -26,13 +26,13 @@ class NullToDateTimeDataTransformerTest extends TestCase
 
     public function testTransform()
     {
-        $this->assertEquals(null, $this->transformer->transform(null));
-        $this->assertTrue(is_a($this->transformer->transform(new \DateTime()), \DateTime ::class));
+        $this->assertNull($this->transformer->transform(null));
+        $this->assertTrue(\is_a($this->transformer->transform(new \DateTime()), \DateTime ::class));
     }
 
     public function testReverseTransformNull()
     {
-        $this->assertTrue(is_a($this->transformer->reverseTransform(null), \DateTimeImmutable::class));
+        $this->assertTrue(\is_a($this->transformer->reverseTransform(null), \DateTimeImmutable::class));
     }
 
     public function testReverseTransformNotNull()
