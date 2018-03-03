@@ -125,7 +125,7 @@ final class GuhamTaskManagerExtension extends Extension implements PrependExtens
                     'form' => [
                         'title' => 'add.tag',
                         'fields' => [
-                            ['property' => 'name', 'label' => 'label.name'],
+                            ['property' => 'name', 'label' => 'label.name', 'type_options' => ['empty_data' => '']],
                         ],
                     ],
                     'edit' => [
