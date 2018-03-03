@@ -7,8 +7,10 @@ namespace Guham\TaskManagerBundle\Tests\Form\Type;
 use Guham\TaskManagerBundle\Form\DataTransformer\NullToDateTimeDataTransformer;
 use Guham\TaskManagerBundle\Form\Type\TaskDateTimeType;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TaskDateTimeTypeTest extends TestCase
 {
@@ -27,7 +29,7 @@ class TaskDateTimeTypeTest extends TestCase
         $this->type = null;
     }
 
-    public function testBuildForm()
+    public function testBuildForm(): void
     {
         $formBuilderInterfaceProphecy = $this->prophesize(FormBuilderInterface::class);
         $formBuilderInterfaceProphecy->addModelTransformer(new NullToDateTimeDataTransformer())->shouldBeCalled();
@@ -36,8 +38,22 @@ class TaskDateTimeTypeTest extends TestCase
         $this->type->buildForm($formBuilderInterface, []);
     }
 
-    public function testGetParent()
+    public function testConfigureOptions(): void
+    {
+        $optionsResolverProphecy = $this->prophesize(OptionsResolver::class);
+        $optionsResolverProphecy->setDefaults(Argument::type('array'))->shouldBeCalled();
+        $optionsResolver = $optionsResolverProphecy->reveal();
+
+        $this->type->configureOptions($optionsResolver);
+    }
+
+    public function testGetParent(): void
     {
         $this->assertEquals(DateTimeType::class, $this->type->getParent());
+    }
+
+    public function testGetBlockPrefix(): void
+    {
+        $this->assertEquals('task_datetime', $this->type->getBlockPrefix());
     }
 }
