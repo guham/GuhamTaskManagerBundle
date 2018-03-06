@@ -143,7 +143,6 @@ final class GuhamTaskManagerExtension extends Extension implements PrependExtens
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-        $container->setParameter('guham_task_manager.title', $config['title']);
         $container->setParameter('guham_task_manager.homepage_route', $config['homepage_route']);
     }
 }

@@ -19,11 +19,6 @@ final class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('title')
-                    ->info('The title of the app.')
-                    ->cannotBeEmpty()
-                    ->defaultValue('')
-                ->end()
                 ->scalarNode('homepage_route')
                     ->info('The homepage route.')
                     ->cannotBeEmpty()

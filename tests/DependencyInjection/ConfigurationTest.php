@@ -36,7 +36,6 @@ class ConfigurationTest extends TestCase
         $this->assertInstanceOf(TreeBuilder::class, $treeBuilder);
         $this->assertInstanceOf(ConfigurationInterface::class, $this->configuration);
         $this->assertEquals([
-            'title' => '',
             'homepage_route' => '/',
         ], $config);
     }

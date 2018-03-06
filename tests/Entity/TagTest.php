@@ -12,15 +12,16 @@ class TagTest extends TestCase
 {
     private const DEFAULT_NAME = 'tag.default.name';
 
-    public function testInstance()
+    public function testDefaultInstance(): void
     {
         $tag = new Tag();
         $this->assertEquals(self::DEFAULT_NAME, $tag->getName());
         $this->assertEquals(self::DEFAULT_NAME, $tag);
         $this->assertCount(0, $tag->getTasks());
+        $this->assertNull($tag->getId());
     }
 
-    public function testTasks()
+    public function testTasks(): void
     {
         $tag = new Tag();
         $t1 = new Task();

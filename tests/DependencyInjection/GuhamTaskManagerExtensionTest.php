@@ -14,9 +14,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
 class GuhamTaskManagerExtensionTest extends TestCase
 {
-    const DEFAULT_CONFIG = ['guham_task_manager' => [
-        'title' => 'Title',
-    ]];
+    const DEFAULT_CONFIG = ['guham_task_manager' => []];
 
     private $extension;
 
@@ -30,7 +28,7 @@ class GuhamTaskManagerExtensionTest extends TestCase
         $this->extension = null;
     }
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $this->extension = new GuhamTaskManagerExtension();
 
@@ -38,7 +36,7 @@ class GuhamTaskManagerExtensionTest extends TestCase
         $this->assertInstanceOf(ExtensionInterface::class, $this->extension);
     }
 
-    public function testPrepend()
+    public function testPrepend(): void
     {
         $containerBuilderProphecy = $this->prophesize(ContainerBuilder::class);
 
@@ -160,12 +158,11 @@ class GuhamTaskManagerExtensionTest extends TestCase
         $this->extension->prepend($containerBuilder);
     }
 
-    public function testLoad()
+    public function testLoad(): void
     {
         $containerBuilderProphecy = $this->prophesize(ContainerBuilder::class);
 
         $parameters = [
-            'guham_task_manager.title' => 'Title',
             'guham_task_manager.homepage_route' => '/',
         ];
         foreach ($parameters as $key => $value) {

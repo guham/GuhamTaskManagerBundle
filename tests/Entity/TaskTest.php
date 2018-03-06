@@ -23,7 +23,7 @@ class TaskTest extends KernelTestCase
         $this->validator = self::$kernel->getContainer()->get('validator');
     }
 
-    public function testInstance()
+    public function testDefaultInstance(): void
     {
         $task = new Task();
         $this->assertEquals($task->getEndDate()->format('H'), $task->getStartDate()->modify('+1 hour')->format('H'));
@@ -34,9 +34,10 @@ class TaskTest extends KernelTestCase
         $this->assertEquals(self::DEFAULT_TITLE, $task->getTitle());
         $errors = $this->validator->validate($task);
         $this->assertCount(0, $errors);
+        $this->assertNull($task->getId());
     }
 
-    public function testMarkAs()
+    public function testMarkAsFunctions(): void
     {
         $task = new Task();
         $task
@@ -57,7 +58,7 @@ class TaskTest extends KernelTestCase
         $this->assertTrue($task->isPinned());
     }
 
-    public function testTags()
+    public function testTags(): void
     {
         $task = new Task();
         $t1 = new Tag();
@@ -76,30 +77,30 @@ class TaskTest extends KernelTestCase
         $this->assertTrue($t1->getTasks()->isEmpty());
     }
 
-    public function testUpdateTitle()
+    public function testUpdateTitle(): void
     {
         $task = new Task();
         $task->setTitle('new title');
         $this->assertEquals('new title', $task);
     }
 
-    public function testNote()
+    public function testUpdateNote(): void
     {
         $task = new Task();
         $task->setNote('new note');
         $this->assertEquals('new note', $task->getNote());
     }
 
-    public function testIncorrectEndDate()
+    public function testIncorrectEndDate(): void
     {
         $task = new Task();
-        $endDate = new \DateTime('2002-05-06');
-        $task->setEndDate($endDate);
+        $incorrectEndDate = $task->getStartDate()->modify('-2 days');
+        $task->setEndDate($incorrectEndDate);
         $errors = $this->validator->validate($task);
         $this->assertCount(1, $errors);
     }
 
-    public function testIncorrectStartDate()
+    public function testIncorrectStartDate(): void
     {
         $task = new Task();
         $startDate = $task->getEndDate()->modify('+3 days');
