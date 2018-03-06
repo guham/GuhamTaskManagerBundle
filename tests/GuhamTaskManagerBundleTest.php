@@ -6,14 +6,13 @@ namespace Guham\TaskManagerBundle\Tests;
 
 use Guham\TaskManagerBundle\GuhamTaskManagerBundle;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class GuhamTaskManagerBundleTest extends TestCase
 {
-    public function testBuild()
+    public function testBundle(): void
     {
-        $containerProphecy = $this->prophesize(ContainerBuilder::class);
         $bundle = new GuhamTaskManagerBundle();
-        $bundle->build($containerProphecy->reveal());
+        $this->assertInstanceOf(Bundle::class, $bundle);
     }
 }
