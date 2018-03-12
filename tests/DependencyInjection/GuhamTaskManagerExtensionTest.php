@@ -69,7 +69,7 @@ class GuhamTaskManagerExtensionTest extends TestCase
             ],
             'entities' => [
                 'Task' => [
-                    'class' => 'Guham\TaskManagerBundle\Entity\Task',
+                    'class' => '',
                     'label' => 'menu.tasks',
                     'list' => [
                         'title' => 'label.tasks',
@@ -122,7 +122,7 @@ class GuhamTaskManagerExtensionTest extends TestCase
                     ],
                 ],
                 'Tag' => [
-                    'class' => 'Guham\TaskManagerBundle\Entity\Tag',
+                    'class' => '',
                     'label' => 'menu.tags',
                     'list' => [
                         'title' => 'label.tags',

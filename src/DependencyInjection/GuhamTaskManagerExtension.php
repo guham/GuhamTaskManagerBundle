@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Guham\TaskManagerBundle\DependencyInjection;
 
-use Guham\TaskManagerBundle\Entity\Tag;
-use Guham\TaskManagerBundle\Entity\Task;
 use Guham\TaskManagerBundle\Form\Type\TaskDateTimeType;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -50,7 +48,7 @@ final class GuhamTaskManagerExtension extends Extension implements PrependExtens
             ],
             'entities' => [
                 'Task' => [
-                    'class' => Task::class,
+                    'class' => $config['entities']['Task']['class'],
                     'label' => 'menu.tasks',
                     'list' => [
                         'title' => 'label.tasks',
@@ -103,7 +101,7 @@ final class GuhamTaskManagerExtension extends Extension implements PrependExtens
                     ],
                 ],
                 'Tag' => [
-                    'class' => Tag::class,
+                    'class' => $config['entities']['Tag']['class'],
                     'label' => 'menu.tags',
                     'list' => [
                         'title' => 'label.tags',
