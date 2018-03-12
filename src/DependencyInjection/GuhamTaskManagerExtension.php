@@ -24,9 +24,7 @@ final class GuhamTaskManagerExtension extends Extension implements PrependExtens
         $config = $this->processConfiguration(new Configuration(), $configs);
 
         $container->prependExtensionConfig('easy_admin', [
-            'site_name' => 'Task Manager - Admin',
             'design' => [
-                'brand_color' => '#4F805D',
                 'menu' => [
                     ['label' => 'menu.homepage', 'route' => $config['homepage_route'], 'icon' => 'home'],
                     ['entity' => 'Task', 'icon' => 'tasks', 'default' => true],

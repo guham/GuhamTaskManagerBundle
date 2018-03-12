@@ -45,9 +45,7 @@ class GuhamTaskManagerExtensionTest extends TestCase
         $containerBuilderProphecy->getExtensionConfig('guham_task_manager')->willReturn([])->shouldBeCalled();
 
         $containerBuilderProphecy->prependExtensionConfig('easy_admin', [
-            'site_name' => 'Task Manager - Admin',
             'design' => [
-                'brand_color' => '#4F805D',
                 'menu' => [
                     ['label' => 'menu.homepage', 'route' => '/', 'icon' => 'home'],
                     ['entity' => 'Task', 'icon' => 'tasks', 'default' => true],
