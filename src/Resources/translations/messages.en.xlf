@@ -56,11 +56,11 @@
       </trans-unit>
       <trans-unit id="label_createdat">
         <source>label.createdat</source>
-        <target>Create date</target>
+        <target>Creation date</target>
       </trans-unit>
       <trans-unit id="label_updatedat">
         <source>label.updatedat</source>
-        <target>Update date</target>
+        <target>Updated at</target>
       </trans-unit>
       <trans-unit id="add_tag">
         <source>add.tag</source>
