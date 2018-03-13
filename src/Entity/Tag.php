@@ -19,7 +19,7 @@ class Tag
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string the name of this tag
@@ -28,14 +28,14 @@ class Tag
      * @Assert\NotNull()
      * @Assert\NotBlank()
      */
-    private $name = 'tag.default.name';
+    protected $name = 'tag.default.name';
 
     /**
      * @var Collection|Task[]
      *
      * @ORM\ManyToMany(targetEntity="Task", mappedBy="tags")
      */
-    private $tasks;
+    protected $tasks;
 
     public function __construct()
     {

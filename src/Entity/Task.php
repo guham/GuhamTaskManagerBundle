@@ -24,7 +24,7 @@ class Task
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string the title of this task
@@ -33,14 +33,14 @@ class Task
      * @Assert\NotNull()
      * @Assert\NotBlank()
      */
-    private $title = 'task.default.title';
+    protected $title = 'task.default.title';
 
     /**
      * @var \DateTimeInterface the start date of this task
      *
      * @ORM\Column(type="datetime")
      */
-    private $startDate;
+    protected $startDate;
 
     /**
      * @var \DateTimeInterface the end date of this task
@@ -48,28 +48,28 @@ class Task
      * @ORM\Column(type="datetime")
      * @Assert\GreaterThanOrEqual(propertyPath="startDate")
      */
-    private $endDate;
+    protected $endDate;
 
     /**
      * @var bool true if this task is completed
      *
      * @ORM\Column(type="boolean")
      */
-    private $isCompleted = false;
+    protected $isCompleted = false;
 
     /**
      * @var bool true if this task is pinned
      *
      * @ORM\Column(type="boolean")
      */
-    private $isPinned = false;
+    protected $isPinned = false;
 
     /**
      * @var string|null notes of this task
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $note;
+    protected $note;
 
     /**
      * @var Collection|Tag[]
@@ -77,7 +77,7 @@ class Task
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="tasks")
      * @ORM\JoinTable(name="tasks_tags")
      */
-    private $tags;
+    protected $tags;
 
     public function __construct()
     {
