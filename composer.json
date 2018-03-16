@@ -22,6 +22,7 @@
         "friendsofphp/php-cs-fixer": "^2.10",
         "phpunit/phpunit": "^6.1",
         "symfony/framework-bundle": "^4.0",
+        "symfony/phpunit-bridge": "^4.0",
         "symfony/yaml": "^4.0"
     },
     "autoload": {

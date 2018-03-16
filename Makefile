@@ -4,9 +4,13 @@ help:	## This help.
 .PHONY:	help
 
 tests:	## PHPUnit tests & code coverage
-		vendor/bin/phpunit --coverage-html coverage
+		vendor/bin/simple-phpunit --colors=always --coverage-html coverage
 .PHONY: tests
 
 fix:	## PHP CS Fixer
-		vendor/bin/php-cs-fixer fix --dry-run --diff
+		vendor/bin/php-cs-fixer fix --diff
 .PHONY: fix
+
+fix-dry-run:	## PHP CS Fixer
+		vendor/bin/php-cs-fixer fix --diff --dry-run
+.PHONY: fix-dry-run
