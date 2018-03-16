@@ -14,3 +14,11 @@ fix:	## PHP CS Fixer
 fix-dry-run:	## PHP CS Fixer
 		vendor/bin/php-cs-fixer fix --diff --dry-run
 .PHONY: fix-dry-run
+
+lint-yaml:	## Check YAML syntax errors
+		tests/App/bin/console lint:yaml "tests"
+.PHONY: lint-yaml
+
+lint-xliff:	## Check XLIFF translations syntax errors
+		tests/App/bin/console lint:xliff "src/Resources/translations"
+.PHONY: lint-xliff

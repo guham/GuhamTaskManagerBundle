@@ -31,7 +31,9 @@ install:
 script:
   - composer validate --strict --no-check-lock
   - vendor/bin/simple-phpunit $PHPUNIT_FLAGS
-  - if [[ $lint = 1 ]]; then vendor/bin/php-cs-fixer fix --dry-run --diff --no-ansi; fi
+  - if [[ $lint = 1 ]]; then make fix-dry-run; fi
+  - if [[ $lint = 1 ]]; then make lint-yaml; fi
+  - if [[ $lint = 1 ]]; then make lint-xliff; fi
 
 after_script:
     - if [[ $COVERAGE = true ]]; then wget https://scrutinizer-ci.com/ocular.phar; fi

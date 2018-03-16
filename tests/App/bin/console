@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+use Guham\TaskManagerBundle\Tests\App\AppKernel;
+
+require __DIR__.'/../../../vendor/autoload.php';
+
+$kernel = new AppKernel('test', true);
+
+$input = new ArgvInput();
+$application = new Application($kernel);
+$application->run($input);
