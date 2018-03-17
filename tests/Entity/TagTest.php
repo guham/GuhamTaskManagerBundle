@@ -6,19 +6,32 @@ namespace Guham\TaskManagerBundle\Tests\Entity;
 
 use Guham\TaskManagerBundle\Entity\Tag;
 use Guham\TaskManagerBundle\Entity\Task;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class TagTest extends TestCase
+class TagTest extends KernelTestCase
 {
     private const DEFAULT_NAME = 'tag.default.name';
+    /**
+     * @var ValidatorInterface
+     */
+    private $validator;
+
+    protected function setUp()
+    {
+        self::bootKernel();
+        $this->validator = self::$kernel->getContainer()->get('validator');
+    }
 
     public function testDefaultInstance(): void
     {
         $tag = new Tag();
+        $this->assertNull($tag->getId());
         $this->assertEquals(self::DEFAULT_NAME, $tag->getName());
         $this->assertEquals(self::DEFAULT_NAME, $tag);
         $this->assertCount(0, $tag->getTasks());
-        $this->assertNull($tag->getId());
+        $errors = $this->validator->validate($tag);
+        $this->assertCount(0, $errors);
     }
 
     public function testTasks(): void

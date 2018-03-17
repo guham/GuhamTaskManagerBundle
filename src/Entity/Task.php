@@ -32,6 +32,9 @@ class Task
      * @ORM\Column
      * @Assert\NotNull()
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     protected $title = 'task.default.title';
 
@@ -39,6 +42,8 @@ class Task
      * @var \DateTimeInterface the start date of this task
      *
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
      */
     protected $startDate;
 
@@ -46,6 +51,8 @@ class Task
      * @var \DateTimeInterface the end date of this task
      *
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
      * @Assert\GreaterThanOrEqual(propertyPath="startDate")
      */
     protected $endDate;
@@ -54,6 +61,7 @@ class Task
      * @var bool true if this task is completed
      *
      * @ORM\Column(type="boolean")
+     * @Assert\NotNull()
      */
     protected $isCompleted = false;
 
@@ -61,6 +69,7 @@ class Task
      * @var bool true if this task is pinned
      *
      * @ORM\Column(type="boolean")
+     * @Assert\NotNull()
      */
     protected $isPinned = false;
 

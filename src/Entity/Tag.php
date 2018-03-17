@@ -27,6 +27,9 @@ class Tag
      * @ORM\Column(unique=true)
      * @Assert\NotNull()
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     protected $name = 'tag.default.name';
 

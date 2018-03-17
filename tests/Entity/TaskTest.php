@@ -26,6 +26,7 @@ class TaskTest extends KernelTestCase
     public function testDefaultInstance(): void
     {
         $task = new Task();
+        $this->assertNull($task->getId());
         $this->assertEquals($task->getEndDate()->format('H'), $task->getStartDate()->modify('+1 hour')->format('H'));
         $this->assertFalse($task->isCompleted());
         $this->assertFalse($task->isPinned());
@@ -34,7 +35,6 @@ class TaskTest extends KernelTestCase
         $this->assertEquals(self::DEFAULT_TITLE, $task->getTitle());
         $errors = $this->validator->validate($task);
         $this->assertCount(0, $errors);
-        $this->assertNull($task->getId());
     }
 
     public function testMarkAsFunctions(): void
